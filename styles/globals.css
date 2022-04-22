@@ -1,0 +1,30 @@
+.navbar {
+  background-color: #cd163f !important;
+}
+
+.navbar-brand {
+  color: white !important;
+}
+
+.btn-outline-primary {
+  color: #cd163f;
+  border-color: #cd163f;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #cd163f;
+  border-color: #cd163f;
+}
+
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: #cd163f;
+  border-color: #cd163f;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #cd163f;
+  border-color: #cd163f;
+}

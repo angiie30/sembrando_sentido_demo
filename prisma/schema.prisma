@@ -1,0 +1,38 @@
+datasource db {
+    provider = "sqlite"
+    url = "file:./car_inventory.db"
+}
+
+generator client { 
+    provider = "prisma-client-js"
+}
+
+model Category { 
+    id Int @id @default(autoincrement())
+    label String
+    active Boolean @default(true)
+    created DateTime @default(now())
+    modified  DateTime @updatedAt
+    cars Car[]
+}
+
+model Car { 
+    id Int @id @default(autoincrement())
+    title String
+    description String
+    categoryId Int
+    active Boolean @default(true)
+    created DateTime @default(now())
+    modified  DateTime @updatedAt
+    brand Category   @relation(fields: [categoryId], references: [id])
+}
+
+model User {
+    id Int @id @default(autoincrement())
+    name String
+    username String @unique
+    password String
+    salt String
+    created DateTime @default(now())
+    modified  DateTime @updatedAt
+}
