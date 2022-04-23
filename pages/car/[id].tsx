@@ -5,7 +5,7 @@ import { withIronSessionSsr } from "iron-session/next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Router from "next/router";
-import CarForm from "./form";
+import CarForm from "./_form";
 import { FormValidation, Profile } from "../../types";
 import { deleteCar, updateCar } from "../../repository/cars";
 import { SEMBRANDO_SENTIDO_COOKIE } from "../../common/cookies";

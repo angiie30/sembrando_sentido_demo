@@ -35,8 +35,6 @@ const CarForm: React.FC<CarFormProps> = ({
     if (id !== undefined && !isNaN(+id)) getCarDetail(Number(id)).then(setCar);
   }, [id]);
 
-  console.log(id);
-
   return (
     <>
       <main className="container mt-3">

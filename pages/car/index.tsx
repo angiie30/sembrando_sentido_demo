@@ -3,7 +3,7 @@ import axios from "axios";
 import Router from "next/router";
 import type { NextPage } from "next";
 import Head from "next/head";
-import CarForm from "./form";
+import CarForm from "./_form";
 import { useState } from "react";
 import { FormValidation, Profile } from "../../types";
 import { withIronSessionSsr } from "iron-session/next";
@@ -14,7 +14,7 @@ export const getServerSideProps = withIronSessionSsr(
     const { user } = req.session as any;
 
     return {
-      props: { user: user ? { ...user } : null },
+      props: { user: user ?? null },
     };
   },
   SEMBRANDO_SENTIDO_COOKIE

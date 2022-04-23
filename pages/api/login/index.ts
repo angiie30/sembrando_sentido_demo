@@ -24,7 +24,7 @@ const loginRoute = async (req: NextApiRequest, res: NextApiResponse<any>) => {
         break;
       }
 
-      const userPassowrd = decrypyPassowrd(user.password, user.salt);
+      const userPassowrd = decryptPassowrd(user.password, user.salt);
 
       if (userPassowrd !== data.password) {
         res.status(400).end("Username or password is incorrect.");
@@ -55,7 +55,7 @@ export default withIronSessionApiRoute(loginRoute, SEMBRANDO_SENTIDO_COOKIE);
 const getUserByUsername = (username: string) =>
   prisma.user.findUnique({ where: { username } });
 
-const decrypyPassowrd = (hash: string, salt: string) => {
+const decryptPassowrd = (hash: string, salt: string) => {
   var bytes = CryptoJS.AES.decrypt(hash, salt);
   return bytes.toString(CryptoJS.enc.Utf8);
 };

@@ -13,7 +13,7 @@ export const getServerSideProps = withIronSessionSsr(
     const { user } = req.session as any;
 
     return {
-      props: { user: user ? { ...user } : null },
+      props: { user: user ?? null },
     };
   },
   SEMBRANDO_SENTIDO_COOKIE
