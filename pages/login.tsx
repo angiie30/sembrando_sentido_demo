@@ -3,7 +3,7 @@ import Head from "next/head";
 import Router from "next/router";
 import { useState } from "react";
 import clsx from "clsx";
-import { FormValidation, Login, Profile } from "../types";
+import { FormValidation, Login } from "../types";
 import { auth } from "../repositories/user";
 import { SEMBRANDO_SENTIDO_COOKIE } from "../common/cookies";
 import { withIronSessionSsr } from "iron-session/next";

@@ -5,7 +5,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import CarForm from "./_form";
 import { useState } from "react";
-import { FormValidation, Profile } from "../../types";
+import { FormValidation } from "../../types";
 import { withIronSessionSsr } from "iron-session/next";
 import { SEMBRANDO_SENTIDO_COOKIE } from "../../common/cookies";
 import { getSessionProps } from "../../common/serverSideProps";
