@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import { FormValidation } from "../../types";
-import { getCategories } from "../../repository/categories";
-import { getCarDetail } from "../../repository/cars";
+import { getCategories } from "../../repositories/categories";
+import { getCarDetail } from "../../repositories/cars";
 
 interface CarFormProps {
   id?: number;

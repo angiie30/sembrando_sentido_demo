@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { SEMBRANDO_SENTIDO_COOKIE } from "../common/cookies";
 import { getSessionProps } from "../common/serverSideProps";
-import { getCategories } from "../repository/categories";
+import { getCategories } from "../repositories/categories";
 import { Profile } from "../types";
 import CarList from "./_carList";
 import CarListAccordion from "./_carListAccordion";

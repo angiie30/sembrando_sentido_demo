@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import Router from "next/router";
 import CarForm from "./_form";
 import { FormValidation, Profile } from "../../types";
-import { deleteCar, updateCar } from "../../repository/cars";
+import { deleteCar, updateCar } from "../../repositories/cars";
 import { SEMBRANDO_SENTIDO_COOKIE } from "../../common/cookies";
 import { getAndValidateSessionProps } from "../../common/serverSideProps";
 

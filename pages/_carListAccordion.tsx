@@ -2,7 +2,7 @@ import { Car } from "@prisma/client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { DateFormat } from "../common/commonFunctions";
-import { getList } from "../repository/cars";
+import { getList } from "../repositories/cars";
 
 interface CarListProps {
   categoryId: number;

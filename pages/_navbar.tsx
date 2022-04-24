@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import Router, { useRouter } from "next/router";
-import { logOut } from "../repository/user";
+import { logOut } from "../repositories/user";
 import { Profile } from "../types";
 
 interface NavBarProps {
