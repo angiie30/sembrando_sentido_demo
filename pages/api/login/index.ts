@@ -5,11 +5,12 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import CryptoJS from "crypto-js";
 import { Login, Profile } from "../../../types";
 import { SEMBRANDO_SENTIDO_COOKIE } from "../../../common/cookies";
+import { RequestMethod } from "../../../enums";
 
 const prisma = new PrismaClient();
 
 const loginRoute = async (req: NextApiRequest, res: NextApiResponse<any>) => {
-  if (req.method !== "POST") {
+  if (req.method !== RequestMethod.POST) {
     res.status(405).end("Method not allowed.");
     return;
   }

@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { Car, PrismaClient } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { RequestMethod } from "../../../../enums";
 
 const prisma = new PrismaClient();
 
@@ -8,7 +9,7 @@ export const carsByCategoryRoute = async (
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) => {
-  if (req.method !== "GET") {
+  if (req.method !== RequestMethod.GET) {
     res.status(405).end("Method not allowed.");
     return;
   }

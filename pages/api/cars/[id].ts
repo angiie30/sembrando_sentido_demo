@@ -3,6 +3,7 @@ import { Car, PrismaClient } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { withIronSessionApiRoute } from "iron-session/next";
 import { SEMBRANDO_SENTIDO_COOKIE } from "../../../common/cookies";
+import { RequestMethod } from "../../../enums";
 
 const prisma = new PrismaClient();
 
@@ -15,11 +16,11 @@ const carRoute = async (req: NextApiRequest, res: NextApiResponse<any>) => {
   }
 
   switch (req.method) {
-    case "GET": {
+    case RequestMethod.GET: {
       res.json(await getCar(id));
       break;
     }
-    case "PUT": {
+    case RequestMethod.PUT: {
       const { user } = req.session as any;
 
       if (!user || !req.body) {
@@ -30,7 +31,7 @@ const carRoute = async (req: NextApiRequest, res: NextApiResponse<any>) => {
       res.json(await updateCar(req.body, id));
       break;
     }
-    case "DELETE": {
+    case RequestMethod.DELETE: {
       const { user } = req.session as any;
 
       if (!user || !id) {

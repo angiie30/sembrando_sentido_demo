@@ -2,6 +2,7 @@
 import { PrismaClient, User } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 import CryptoJS from "crypto-js";
+import { RequestMethod } from "../../../enums";
 
 const prisma = new PrismaClient();
 
@@ -10,11 +11,11 @@ export const usersRoute = async (
   res: NextApiResponse<any>
 ) => {
   switch (req.method) {
-    case "GET": {
+    case RequestMethod.GET: {
       res.json(await getUsers());
       break;
     }
-    case "POST": {
+    case RequestMethod.POST: {
       if (!req.body) {
         res.status(400).end("Opps! An error has occurred.");
         break;

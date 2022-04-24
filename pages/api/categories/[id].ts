@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { Category, PrismaClient } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { RequestMethod } from "../../../enums";
 
 const prisma = new PrismaClient();
 
@@ -16,11 +17,11 @@ export const categoryRoute = async (
   }
 
   switch (req.method) {
-    case "GET": {
+    case RequestMethod.GET: {
       res.json(await getCategory(id));
       break;
     }
-    case "DELETE": {
+    case RequestMethod.DELETE: {
       res.json(await deleteCategory(id));
       break;
     }
