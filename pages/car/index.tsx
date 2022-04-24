@@ -20,10 +20,7 @@ const addCar = async (car: Car) => {
   return response.data;
 };
 
-interface AddCarProps {
-  user?: Profile;
-}
-const AddCar: NextPage<AddCarProps> = () => {
+const AddCar: NextPage = () => {
   const [formValidation, setFormValidation] = useState<FormValidation>({
     isInvalid: false,
     message: "",

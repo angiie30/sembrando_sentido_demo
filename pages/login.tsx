@@ -14,10 +14,7 @@ export const getServerSideProps = withIronSessionSsr(
   SEMBRANDO_SENTIDO_COOKIE
 );
 
-interface LoginProps {
-  userInfo?: Profile;
-}
-const LoginPage: NextPage<LoginProps> = () => {
+const LoginPage: NextPage = () => {
   const [user, setUser] = useState<Login>({ username: "", password: "" });
   const [formValidation, setFormValidation] = useState<FormValidation>({
     isInvalid: false,

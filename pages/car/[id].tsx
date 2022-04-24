@@ -16,10 +16,7 @@ export const getServerSideProps = withIronSessionSsr(
   SEMBRANDO_SENTIDO_COOKIE
 );
 
-interface AddCarProps {
-  user: Profile;
-}
-const AddCar: NextPage<AddCarProps> = () => {
+const AddCar: NextPage = () => {
   const router = useRouter();
   const [formValidation, setFormValidation] = useState<FormValidation>({
     isInvalid: false,

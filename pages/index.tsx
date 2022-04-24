@@ -17,10 +17,7 @@ export const getServerSideProps = withIronSessionSsr(
   SEMBRANDO_SENTIDO_COOKIE
 );
 
-interface HomeProps {
-  user?: Profile;
-}
-const Home: NextPage<HomeProps> = () => {
+const Home: NextPage = () => {
   const router = useRouter();
   const { cat } = router.query;
 
