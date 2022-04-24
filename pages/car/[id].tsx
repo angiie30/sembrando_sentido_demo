@@ -9,31 +9,17 @@ import CarForm from "./_form";
 import { FormValidation, Profile } from "../../types";
 import { deleteCar, updateCar } from "../../repository/cars";
 import { SEMBRANDO_SENTIDO_COOKIE } from "../../common/cookies";
+import { getAndValidateSessionProps } from "../../common/serverSideProps";
 
 export const getServerSideProps = withIronSessionSsr(
-  function getServerSideProps({ req }) {
-    const { user } = req.session as any;
-
-    if (!user) {
-      return {
-        redirect: {
-          destination: "/login",
-          permanent: false,
-        },
-      };
-    }
-
-    return {
-      props: { user },
-    };
-  },
+  getAndValidateSessionProps,
   SEMBRANDO_SENTIDO_COOKIE
 );
 
 interface AddCarProps {
   user: Profile;
 }
-const AddCar: NextPage<AddCarProps> = ({ user }) => {
+const AddCar: NextPage<AddCarProps> = () => {
   const router = useRouter();
   const [formValidation, setFormValidation] = useState<FormValidation>({
     isInvalid: false,

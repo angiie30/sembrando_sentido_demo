@@ -47,7 +47,7 @@ const CarForm: React.FC<CarFormProps> = ({
         <div className="row">
           <div className="col-12 col-lg-6">
             <form
-              className={clsx({ "was-validated": formValidation.isInvalid })}
+              className={clsx({ "was-validated": formValidation?.isInvalid })}
             >
               <div className="row">
                 <div className="form-group col-12">

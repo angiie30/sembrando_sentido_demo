@@ -8,20 +8,19 @@ export const categoryRoute = async (
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) => {
+  const id = Number(req.query.id);
+
+  if (!id) {
+    res.status(400).end("Opps! An error has occurred.");
+    return;
+  }
+
   switch (req.method) {
     case "GET": {
-      const id = Number(req.query.id);
       res.json(await getCategory(id));
       break;
     }
     case "DELETE": {
-      const id = Number(req.query.id);
-
-      if (!id) {
-        res.status(400).end("Opps! An error has occurred.");
-        break;
-      }
-
       res.json(await deleteCategory(id));
       break;
     }

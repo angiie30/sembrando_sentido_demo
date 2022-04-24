@@ -7,22 +7,17 @@ import { FormValidation, Login, Profile } from "../types";
 import { auth } from "../repository/user";
 import { SEMBRANDO_SENTIDO_COOKIE } from "../common/cookies";
 import { withIronSessionSsr } from "iron-session/next";
+import { getSessionProps } from "../common/serverSideProps";
 
 export const getServerSideProps = withIronSessionSsr(
-  function getServerSideProps({ req }) {
-    const { user } = req.session as any;
-
-    return {
-      props: { user: user ?? null },
-    };
-  },
+  getSessionProps,
   SEMBRANDO_SENTIDO_COOKIE
 );
 
 interface LoginProps {
   userInfo?: Profile;
 }
-const LoginPage: NextPage<LoginProps> = ({ userInfo }) => {
+const LoginPage: NextPage<LoginProps> = () => {
   const [user, setUser] = useState<Login>({ username: "", password: "" });
   const [formValidation, setFormValidation] = useState<FormValidation>({
     isInvalid: false,

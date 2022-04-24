@@ -6,25 +6,20 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { SEMBRANDO_SENTIDO_COOKIE } from "../common/cookies";
+import { getSessionProps } from "../common/serverSideProps";
 import { getCategories } from "../repository/categories";
 import { Profile } from "../types";
 import CarList from "./_carList";
 
 export const getServerSideProps = withIronSessionSsr(
-  function getServerSideProps({ req }) {
-    const { user } = req.session as any;
-
-    return {
-      props: { user: user ?? null },
-    };
-  },
+  getSessionProps,
   SEMBRANDO_SENTIDO_COOKIE
 );
 
 interface HomeProps {
   user?: Profile;
 }
-const Home: NextPage<HomeProps> = ({ user }) => {
+const Home: NextPage<HomeProps> = () => {
   const router = useRouter();
   const { cat } = router.query;
 

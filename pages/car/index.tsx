@@ -8,15 +8,10 @@ import { useState } from "react";
 import { FormValidation, Profile } from "../../types";
 import { withIronSessionSsr } from "iron-session/next";
 import { SEMBRANDO_SENTIDO_COOKIE } from "../../common/cookies";
+import { getSessionProps } from "../../common/serverSideProps";
 
 export const getServerSideProps = withIronSessionSsr(
-  function getServerSideProps({ req }) {
-    const { user } = req.session as any;
-
-    return {
-      props: { user: user ?? null },
-    };
-  },
+  getSessionProps,
   SEMBRANDO_SENTIDO_COOKIE
 );
 
@@ -28,7 +23,7 @@ const addCar = async (car: Car) => {
 interface AddCarProps {
   user?: Profile;
 }
-const AddCar: NextPage<AddCarProps> = ({ user }) => {
+const AddCar: NextPage<AddCarProps> = () => {
   const [formValidation, setFormValidation] = useState<FormValidation>({
     isInvalid: false,
     message: "",

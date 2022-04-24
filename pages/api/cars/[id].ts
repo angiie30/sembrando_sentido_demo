@@ -7,9 +7,15 @@ import { SEMBRANDO_SENTIDO_COOKIE } from "../../../common/cookies";
 const prisma = new PrismaClient();
 
 const carRoute = async (req: NextApiRequest, res: NextApiResponse<any>) => {
+  const id = Number(req.query.id);
+
+  if (!id) {
+    res.status(400).end("Opps! An error has occurred.");
+    return;
+  }
+
   switch (req.method) {
     case "GET": {
-      const id = Number(req.query.id);
       res.json(await getCar(id));
       break;
     }
@@ -21,13 +27,10 @@ const carRoute = async (req: NextApiRequest, res: NextApiResponse<any>) => {
         break;
       }
 
-      const id = Number(req.query.id);
       res.json(await updateCar(req.body, id));
       break;
     }
     case "DELETE": {
-      const id = Number(req.query.id);
-
       const { user } = req.session as any;
 
       if (!user || !id) {

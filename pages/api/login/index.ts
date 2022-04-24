@@ -9,45 +9,41 @@ import { SEMBRANDO_SENTIDO_COOKIE } from "../../../common/cookies";
 const prisma = new PrismaClient();
 
 const loginRoute = async (req: NextApiRequest, res: NextApiResponse<any>) => {
-  switch (req.method) {
-    case "POST": {
-      if (!req.body) {
-        res.status(400).end("Opps! An error has occurred.");
-        break;
-      }
-
-      const data: Login = { ...req.body };
-      const user = await getUserByUsername(data.username);
-
-      if (!user) {
-        res.status(404).end("User not found.");
-        break;
-      }
-
-      const userPassowrd = decryptPassowrd(user.password, user.salt);
-
-      if (userPassowrd !== data.password) {
-        res.status(400).end("Username or password is incorrect.");
-        break;
-      }
-
-      const userInfo: Profile = {
-        id: user.id,
-        name: user.name,
-        username: user.username,
-      };
-      (req.session as any).user = userInfo;
-
-      await req.session.save();
-
-      res.json(userInfo);
-      break;
-    }
-    default: {
-      res.status(405).end("Method not allowed.");
-      break;
-    }
+  if (req.method !== "POST") {
+    res.status(405).end("Method not allowed.");
+    return;
   }
+
+  if (!req.body) {
+    res.status(400).end("Opps! An error has occurred.");
+    return;
+  }
+
+  const data: Login = { ...req.body };
+  const user = await getUserByUsername(data.username);
+
+  if (!user) {
+    res.status(404).end("User not found.");
+    return;
+  }
+
+  const userPassowrd = decryptPassowrd(user.password, user.salt);
+
+  if (userPassowrd !== data.password) {
+    res.status(400).end("Username or password is incorrect.");
+    return;
+  }
+
+  const userInfo: Profile = {
+    id: user.id,
+    name: user.name,
+    username: user.username,
+  };
+  (req.session as any).user = userInfo;
+
+  await req.session.save();
+
+  res.json(userInfo);
 };
 
 export default withIronSessionApiRoute(loginRoute, SEMBRANDO_SENTIDO_COOKIE);
