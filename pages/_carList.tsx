@@ -1,16 +1,8 @@
 import { Car } from "@prisma/client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { DateFormat } from "../common/commonFunctions";
 import { getList } from "../repository/cars";
-
-const DateFormat = (date: Date) =>
-  new Date(date).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-  });
 
 interface CarListProps {
   categoryId: number;

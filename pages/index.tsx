@@ -10,6 +10,7 @@ import { getSessionProps } from "../common/serverSideProps";
 import { getCategories } from "../repository/categories";
 import { Profile } from "../types";
 import CarList from "./_carList";
+import CarListAccordion from "./_carListAccordion";
 
 export const getServerSideProps = withIronSessionSsr(
   getSessionProps,
@@ -45,7 +46,7 @@ const Home: NextPage<HomeProps> = () => {
           <div className="col-1">
             <div className="fs-3">Cars</div>
           </div>
-          <div className="col-2">
+          <div className="col-12 col-md-2 order-md-1 order-sm-last order-last">
             <select
               className="form-select form-select-sm mt-2"
               value={categoryId}
@@ -59,7 +60,7 @@ const Home: NextPage<HomeProps> = () => {
               ))}
             </select>
           </div>
-          <div className="col-9">
+          <div className="col-11 col-md-9 order-md-last order-sm-1 order-1">
             <Link href="/car">
               <a className="btn btn-sm btn-outline-primary float-end mt-2">
                 Create
@@ -71,7 +72,12 @@ const Home: NextPage<HomeProps> = () => {
           List of cars of the{" "}
           {categories.find((c) => c.id === +categoryId)?.label} brand.
         </p>
-        <CarList categoryId={categoryId} />
+        <div className="d-none d-md-block">
+          <CarList categoryId={categoryId} />
+        </div>
+        <div className="d-block d-md-none">
+          <CarListAccordion categoryId={categoryId} />
+        </div>
       </main>
     </div>
   );
